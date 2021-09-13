@@ -1,0 +1,146 @@
+Cara kerja dari bahasa c++ dalam mengubah atau menterjemahkan 
+source code (perintah yang kita buat atau program yang dirancang)
+menjadi bahasa tingkat rendah yang dapat dimengerti oleh mesin,
+melalui tiga proses, yaitu:
+
+<(+)> Preprocessing
+    Bagian ini bertujuan untuk mengcopy file library (yang berisi
+file instrusi siap pakai) dan mnggabungkannya dengan perintah yang
+lainya yang terdapat pada source code. Pemanggilan file dan 
+mengcopy isi file library dilakukan dengan cara menuliskan syntax 
+"#include<namafile.cpp/namafile.h>". Kesimpulan dari penjelasan
+ini, bagian ini berfungsi untuk kopi file library ke dalam file 
+source code.
+Untuk membuktikan bagian ini adalah dengan cara menuliskan
+perintah berikut pada terminal (Powershell atau Command Prompt):
+
+  $> g++ -E main.cpp > isi_nama_file.p
+
+isi_nama_file.p merupakan file berisi file source code dan library
+
+Sebelum melakukan perintah tersebut, buat terlebih dahulu file
+source code yang diberi nama "main.cpp", berikut ini isi file-nya:
+
+#****************************************************************#
+int main(int argc, char const *argv[])
+{
+    int a = 7;
+    int b = 3;
+
+    int c = a-b;
+
+    return c;
+}
+#****************************************************************#
+
+jika perintah terminal sudah diketik dan enter, maka akan muncul
+file isi_nama_file.p, buka file tersebut dan amati isinya dengan
+text editor seperti Visual Studio Code.
+
+Selanjutnya edit kembali file main.cpp dan beri perintah "#include",
+maka isi file tersebut seperti berikut ini:
+
+#****************************************************************#
+int main(int argc, char const *argv[])
+{
+    int a = 7;
+    int b = 3;
+
+    int c = a-b;
+
+    return c;
+}
+#****************************************************************#
+
+jika perintah terminal sudah diketik dan enter, maka akan muncul
+file isi_nama_file.p, nama file tersebut berbeda dari nama file
+sebelumnya, buka file tersebut dan amati isinya, bandingkan dengan
+file sebelumnya.
+
+<(+)> Compiling
+    Bagian ini bertujuan untuk menterjemahkan hasil proses 
+preprocessing ke bahasa tingkat rendah yang dilakukan oleh compiler.
+Bahasa tingkat rendah adalah bahasa yang dimengerti oleh mesin.
+Eksistensi file tersebut adalah ".o".
+Untuk membuktikan bagian ini adalah dengan cara menuliskan
+perintah berikut pada terminal (Powershell atau Command Prompt):
+
+  $> g++ -c main.cpp -o isi_nama_file.o
+
+Maka akan didapat file yang berekstensi ".o". Untuk membuka file 
+tersebut untuk melihat isinya, dapat ditulis perintah terminal 
+berikut ini:
+
+  $> objdump -d isi_nama_file.o 
+
+Jika perintah diatas dieksekusi, akan tampil bahasa mesin dan
+kode mnemonic.
+
+<(+)> Linking
+    Bagian ini bertujuan menggabungkan file berekstensi "o" (file
+ini merupakan hasil dari proses Compiling, biasa disebut file obj).
+Untuk membuktikan nya, ketikan program berikut ini pada file main.cpp,
+adalah sebaga berikut:
+
+#****************************************************************#
+#include<iostream>
+
+using namespace std;
+
+int tambah (int c,int d); 
+
+int main(int argc, char const *argv[])
+{
+    int a = 5;
+    int b = 2;
+
+    // int c = a-b;
+
+    cout << a << " + " << b << "= " << tambah(a,b) << ends;
+
+    return 0;
+}
+#****************************************************************#
+
+Ketikkan perintah ini pada terminal untuk mendapatkan file obj
+(file yg sudah dicompile)
+
+  $> g++ -c main.cpp -o isi_nama_file.o
+
+Maka akan didapat file obj yg didapat dari hasil compiling file main.cpp.
+isi_nama_file yang saya gantikan jadi HC_main.o.
+
+Buatlah file bernama Tambah.cpp, dan ketikkan syntax berikut ini:
+
+#****************************************************************#
+int tambah (int g, int h){
+    return g+h;
+}
+#****************************************************************#
+
+Ketikkan perintah ini pada terminal untuk mendapatkan file obj
+(file yg sudah dicompile) dari file Tambah.cpp
+
+  $> g++ -c Tambah.cpp -o isi_nama_file.o
+
+Maka akan didapat file obj yg didapat dari hasil compiling file 
+Tambah.cpp. isi_nama_file yang saya gantikan jadi HC_Tambah.o.
+
+Untuk melakukan proses linking, ketikan perintah terminal untuk 
+mendapat file executable yang berekstensi ".exe", adalah sebagai
+berikut:
+
+  $> g++ HC_Tambah.o HC_main.o -o Hasil_Linking.exe
+
+            atau seperti ini juga bisa
+
+  $> g++ HC_main.o HC_Tambah.o -o Hasil_Linking.exe
+
+Maka didapatlah file executable yaitu Hasil_Linking.exe, yg berasal 
+dari source code yang sudah melalui tiga proses diatas. Source code
+merupakan syntax yg kita ketik pada file main.cpp dan Tambah.cpp.
+
+Kesimpulan cara kerja bahasa c++ yang menggunakan compiler untuk
+menterjemahkan ke bahasa mesin, adalah sebagai berikut:
+
+Preprocessing >> Compiling >> Linking.
