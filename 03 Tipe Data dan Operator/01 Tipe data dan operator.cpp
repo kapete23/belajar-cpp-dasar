@@ -38,11 +38,13 @@ int main(int argc, char const *argv[])
 
     // |+| Operator Bianary
     //     Operator binary adalah operator yang melibatkan atau dikenakan pada dua buah operand. Yang termasuk dalam operator bianary adalah operator aritmatika (+, -, *, /, dan %). Contoh : 210 + 5, tambah (+) merupakan operator binary yang memiliki dua operand yaitu 210 dan 5.
-    
+
     //Aritmatika
     c=angka+b;
     cout << "Aritmatika" << endl;
     cout << angka << " + " << b << " = " << c << "\n \n";
+    
+    // Operator penugasan (Assignment operator) atau pemberi nilai berupa tanda sama dengan (“=”), juga merupakan operator bianary. Seperti yg terdapat syntax diatas, yaitu c = angka + b. di syntax tersebut terdapat dua operand yaitu "c" dan "angka + b".
 
     // |+| Operator ternary
     //     Operator ternary adalah operator yang melibatkan tiga buah operand. Yang tergolong operator ini adalah Operator kondisi dengan symbol '?', bentuk ungkapan operator kondisi adalah :
@@ -59,7 +61,6 @@ int main(int argc, char const *argv[])
     maks = (x<y) ? y:x;         //Operator ternary
     maks = (maks<z) ? z:maks;   //Operator ternary
     cout << "\nMaka Bilangan Maksimum = " << maks << "\n" << endl;
-
 
     tampil();
     //Terdapat beberapa karakter escape, "\n" merupakan salah satu dari karakter escape
